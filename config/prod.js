@@ -6,4 +6,6 @@ module.exports = {
   dbURI: process.env.DB_URI,
   cookieKey: process.env.COOKIE_KEY,
   redirectDomain: process.env.REDIRECT_DOMAIN,
+  coinrankingHost: process.env.COINRANKING_HOST,
+  coinrankingKey: process.env.COINRANKING_KEY,
 };
