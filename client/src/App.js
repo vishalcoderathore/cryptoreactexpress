@@ -1,5 +1,5 @@
 // Importing React Components
-import React from 'react';
+import { React, Fragment } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // Importing Ant UI components
@@ -21,27 +21,23 @@ import './css/App.css';
 
 const App = () => {
   return (
-    <div className='app'>
-      <div className='navbar'>
-        <Navbar />
-      </div>
-      <div className='main'>
-        <Layout>
-          <div className='routes'>
-            <Routes>
-              <Route index element={<Homepage />} />
-              <Route path='/exchanges' element={<Exchanges />} />
-              <Route path='/cryptocurrencies' element={<Cryptocurrencies />} />
-              <Route path='/crypto/:coinId' element={<CryptoDetails />} />
-              <Route path='/news' element={<News />} />
-            </Routes>
-          </div>
-        </Layout>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Navbar />
+      <Layout className='site-layout'>
+        <div className='routes'>
+          <Routes>
+            <Route index element={<Homepage />} />
+            <Route path='/exchanges' element={<Exchanges />} />
+            <Route path='/cryptocurrencies' element={<Cryptocurrencies />} />
+            <Route path='/crypto/:coinId' element={<CryptoDetails />} />
+            <Route path='/news' element={<News />} />
+          </Routes>
+        </div>
         <div className='footer'>
           <Footer />
         </div>
-      </div>
-    </div>
+      </Layout>
+    </Layout>
   );
 };
 
