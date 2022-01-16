@@ -1,6 +1,8 @@
 // Importing React Components
-import { React, Fragment } from 'react';
+import { React, Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 
 // Importing Ant UI components
 import { Layout } from 'antd';
@@ -19,26 +21,39 @@ import {
 // Importing global css
 import './css/App.css';
 
-const App = () => {
-  return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Navbar />
-      <Layout className='site-layout'>
-        <div className='routes'>
-          <Routes>
-            <Route index element={<Homepage />} />
-            <Route path='/exchanges' element={<Exchanges />} />
-            <Route path='/cryptocurrencies' element={<Cryptocurrencies />} />
-            <Route path='/crypto/:coinId' element={<CryptoDetails />} />
-            <Route path='/news' element={<News />} />
-          </Routes>
-        </div>
-        <div className='footer'>
-          <Footer />
-        </div>
-      </Layout>
-    </Layout>
-  );
-};
+import { BrowserRouter as Router } from 'react-router-dom';
 
-export default App;
+class App extends Component {
+  componentDidMount() {
+    console.log('fetchUser called');
+    this.props.fetchUser();
+  }
+  render() {
+    return (
+      <Router>
+        <Layout style={{ minHeight: '100vh' }}>
+          <Navbar />
+          <Layout className='site-layout'>
+            <div className='routes'>
+              <Routes>
+                <Route index element={<Homepage />} />
+                <Route path='/exchanges' element={<Exchanges />} />
+                <Route
+                  path='/cryptocurrencies'
+                  element={<Cryptocurrencies />}
+                />
+                <Route path='/crypto/:coinId' element={<CryptoDetails />} />
+                <Route path='/news' element={<News />} />
+              </Routes>
+            </div>
+            <div className='footer'>
+              <Footer />
+            </div>
+          </Layout>
+        </Layout>
+      </Router>
+    );
+  }
+}
+
+export default connect(null, actions)(App);
