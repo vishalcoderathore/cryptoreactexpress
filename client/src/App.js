@@ -11,6 +11,7 @@ import { Layout } from 'antd';
 import {
   Navbar,
   Homepage,
+  LandingPage,
   Exchanges,
   Cryptocurrencies,
   CryptoDetails,
@@ -35,7 +36,8 @@ class App extends Component {
           <Layout className='site-layout'>
             <div className='routes'>
               <Routes>
-                <Route index element={<Homepage />} />
+                <Route index path='/' element={<LandingPage />} />
+                <Route path='/home' element={<Homepage />} />
                 <Route path='/exchanges' element={<Exchanges />} />
                 <Route
                   path='/cryptocurrencies'
