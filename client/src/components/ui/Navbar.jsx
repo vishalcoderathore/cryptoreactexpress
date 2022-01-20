@@ -81,7 +81,9 @@ class Navbar extends Component {
         <div className='logo' />
         {!collapsed && (
           <Typography.Title level={4} className='logo app-title'>
-            <Link to='/' style={{ color: 'white' }}>
+            <Link
+              to={this.props.auth ? '/home' : '/'}
+              style={{ color: 'white' }}>
               Cryptoverse
             </Link>
           </Typography.Title>
