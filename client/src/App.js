@@ -25,7 +25,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
   componentDidMount() {
-    console.log('fetchUser called');
     this.props.fetchUser();
   }
   render() {
