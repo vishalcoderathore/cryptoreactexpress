@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import millify from 'millify';
 import { Typography, Row, Col, Statistic } from 'antd';
+import * as actions from '../../actions';
 
 const { Title } = Typography;
 
 class Homepage extends Component {
+  componentDidMount() {
+    this.props.fetchCoins();
+  }
   render() {
+    console.log('Calling from Homepage');
+    console.log(this.props);
     return (
       <>
         <Title level={2} className='heading'>
@@ -33,4 +40,8 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+function mapStateToProps(state) {
+  return { auth: state.auth, coins: state.coins };
+}
+
+export default connect(mapStateToProps, actions)(Homepage);
