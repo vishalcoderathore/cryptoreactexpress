@@ -1,6 +1,6 @@
-const passport = require('passport');
 const axios = require('axios').default;
 const keys = require('../config/keys');
+const requireLogin = require('../middlewares/requireLogin');
 
 var getCoins = {
   method: 'GET',
@@ -21,15 +21,13 @@ var getCoins = {
 };
 
 module.exports = (app) => {
-  app.get('/api/getcoins', (req, res) => {
-    axios
-      .request(getCoins)
-      .then(function (response) {
-        console.log(response.data);
-        res.send(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+  app.get('/api/getcoins', requireLogin, async (req, res) => {
+    try {
+      console.log(req.user);
+      const allCoins = await axios.request(getCoins);
+      res.send(allCoins.data);
+    } catch (error) {
+      return res.send({ error: error.message });
+    }
   });
 };
