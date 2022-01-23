@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 require('./models/User');
 require('./services/passport');
 const authRoutes = require('./routes/authRoutes');
+const cryptoRoutes = require('./routes/cryptoRoutes');
 
 // Connect to Mongose Database
 mongoose.connect(keys.dbURI, () => {
@@ -37,6 +38,7 @@ app.use(passport.session());
 
 // Include routing paths
 authRoutes(app);
+cryptoRoutes(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express serve production assets (main.js or main.css)
