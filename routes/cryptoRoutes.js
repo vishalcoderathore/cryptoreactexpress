@@ -23,9 +23,8 @@ var getCoins = {
 module.exports = (app) => {
   app.get('/api/getcoins', requireLogin, async (req, res) => {
     try {
-      console.log(req.user);
       const allCoins = await axios.request(getCoins);
-      res.send(allCoins.data);
+      res.send(allCoins.data.data.stats);
     } catch (error) {
       return res.send({ error: error.message });
     }
